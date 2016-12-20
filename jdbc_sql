@@ -1,0 +1,41 @@
+学习使用JAVA+JDBC对数据库的数据进行增加、修改、删除、查询等操作；
+学习JDBC调用存储过程；学习主要数据库操作对象Connection、Statement、PreparedStatement、ResultSet的使用。
+1.增加
+String s1="insert into tableNames (id,name,password) values(myseq.nextval,?,?);"
+Class.forName(driver);
+Connection conn = DriverManager.getConnection(url,dbUser,dbPwd);
+PreparedStatement prepStmt  = conn.prepareStatement(s1);
+prepStmt.setString(1,name);
+prepStmt.setString(2,password);
+ResultSet rs=stmt.executeUpdate();
+2、删除
+String s2="delete from tbNames where name=?";
+Class.forName(driver);
+Connection conn = DriverManager.getConnection(url,dbUser,dbPwd);
+PreparedStatement prepStmt  = conn.prepareStatement(s2);
+prepStmt.setString(1,name);
+ResultSet rs=stmt.executeUpdate();
+3、修改
+String s3=“update tbNames set name=? where id=?”;
+Class.forName(driver);
+Connection conn = DriverManager.getConnection(url,dbUser,dbPwd);
+PreparedStatement prepStmt  = conn.prepareStatement(s3);
+prepStmt.setString(1,name);
+prepStmt.setString(2,id);
+ResultSet rs=stmt.executeUpdate();
+4、查询
+String s4="select id,name,password from tbNames";
+Class.forName(driver);
+Connection conn = DriverManager.getConnection(url,dbUser,dbPwd);
+Statement stmt=conn.createStatement();
+ResultSet rs = stmt.executeQuery(s4);
+while(rs.next){
+int id=rs.getInt(1);
+String name = rs.getString(2);
+String pwd=rs.getString(3);
+System.out.println(id+name+pwd);                     } 
+
+以上四步必须都得关闭连接；！！！
+rs.close();
+stmt.close();
+conn.close();
