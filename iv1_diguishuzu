@@ -1,0 +1,54 @@
+import java.util.*;
+public class Test {
+	public static int k=0;
+	public static void main(String[] args) throws Exception{
+		String[] array=new String []{"1","2","3","4"};
+		listall(Arrays.asList(array),"");
+	}
+	public static void listall(List candidate,String prefix) 
+	{
+		if (candidate .isEmpty())
+			System.out.println(prefix);
+		for (int i=0;i<candidate.size();i++)
+		{
+			List temp=new LinkedList(candidate);
+			listall(temp,prefix+temp.remove(i));
+		}
+	}
+}
+/*思路就是固定前缀 prefix，然后还有剩下的候选candidate。从候选里面选择一些加到前缀后面。 
+*比如固定前缀1，然后加上2，再从后面的34 选中3，然后是4。得到1234。或者 从后面的34里面先选4，然后是3。得到1243。
+*代码利用了一些特性，LinkedList 删除操作较快，remove返回的是删除的元素 
+*函数的参数从右边解析，remove 之后，temp 传过去的值也是少了一个的容器。这样candidate渐渐变小，才能达到递归跳出条件。
+*/解法2如下
+import java.io.*;
+import java.util.*;
+public class Test {
+	public static void main(String[] args) throws IOException {
+	    String[] arrays = new String[] { "1", "2", "3", "4" };
+	     listAll(Arrays.asList(arrays), "");
+	     listAll("1234", "");
+	}
+	static void listAll(List candidate, String prefix) {
+	     if (candidate.isEmpty()) {
+	    System.out.println(prefix);
+	     }
+
+	    for (int i = 0; i < candidate.size(); i++) {
+	        List temp = new LinkedList(candidate);
+	        listAll(temp, prefix + temp.remove(i));
+	    }
+
+	}
+	static void listAll(String candidate, String prefix) {
+	    if ( candidate.length() == 0) {
+	        System.out.println(prefix);
+	    }
+
+	    for (int i = 0; i < candidate.length(); i++) {
+	        char prefixChar = candidate.charAt(i);
+
+	        listAll(candidate.replace(prefixChar + "", ""), prefix + prefixChar);
+	    }
+	}
+}
