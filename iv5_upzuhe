@@ -1,0 +1,37 @@
+/*思路分析
+难点在于如何消除重复的2，
+对于一个任意的串利用递归进行排列时，循环串中的每个字符到第一个字符进行递归。
+如果串中的字符出现重复，则重复的字符只可以利用递归算法一次，
+即只要与前面相同的字符玄幻到第一个字符时，不调用递归就可以避免重复*/
+import java.io.*;
+import java.util.*;
+public class Test {
+	public static void main(String[] args){
+		String s="12234";
+		new Test().pailie(s,"");
+	}
+	public void pailie(String s,String p)
+	{
+		int i;
+		if(s.length()<1)
+		{
+			System.out.println(p);//打印		
+      }
+		else
+		{
+			int []index=new int [s.length()];
+			for (i=0;i<s.length();i++)//该循环将所有的字符第一次出现的位置记录在数组index中			
+{
+				index[i]=s.indexOf(s.charAt(i));
+			}
+			for(i=0;i<s.length();i++)
+			{
+				if(i==index[i])//只有当循环数与第一次记录数相等时才递归，保证相同字符中的第一个调用				
+        {
+					pailie(s.substring(1),p+s.substring(0,1));
+				}
+				s=s.substring(1)+s.substring(0,1);
+			}
+		}
+	}
+}
