@@ -1,0 +1,21 @@
+import java.util.Stack;
+public class Test {
+	static String [] months={"January","February","March","April","May","June","July","August","September","October","November","December"};
+	public static void main(String[] args){
+	Stack stk=new Stack();	//头文件import java.util.Stack;
+	for(int i=0;i<months.length;i++)
+	{
+		stk.push(months[i]);	//测试此向量是否不包含组件。 
+	}
+	/*while(!stk.isEmpty()){	//测试此向量是否不包含组件。 
+		System.out.print(" "+stk.pop());	//测试此向量是否不包含组件。 
+	}*/
+	//以上为基本操作
+	
+	System.out.println("element 7= "+stk.elementAt(7));
+	//返回指定索引处的组件。  stack属于Vector的一种，能对Vector操作的，也能对stack操作
+	stk.addElement("the last line");
+	//将指定的组件添加到此向量的末尾，将其大小增加 1。如果向量的大小比容量大，则增大其容量
+	System.out.println("堆栈中的元素个数："+stk.size());
+  }
+}
