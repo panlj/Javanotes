@@ -1,0 +1,34 @@
+import java.util.Vector;
+public class Test {
+	static String [] months={"January","February","March",
+			"April","May","June","July","August",
+			"September","October","November","December"};
+	public static void main(String[] args){
+	Vector vr=new Vector();
+	int i=0;
+	//vector 可以用作队列使用 
+	
+	//以下算法实现进队列，对象放入尾部
+	for(i=0;i<months.length;i++)
+	{
+		vr.addElement(months[i]+" ");
+		//将指定的组件添加到此向量的末尾，将其大小增加 1。
+		//如果向量的大小比容量大，则增大其容量。 
+	}
+	i=0;
+	//以下算法实现出队列，如果队列不为空，则打印在队列头部的元素
+	while(!vr.isEmpty()){
+		System.out.print(vr.firstElement());
+		//返回此向量的第一个组件（位于索引 0) 处的项）。 
+		
+		vr.removeElement(vr.firstElement());
+		//从此向量中移除变量的第一个（索引最小的）匹配项。
+		//如果在此向量中找到该对象，那么向量中索引大于等于该对象索引的每个组件都会下移，使其索引值变成比以前小 1 的值。
+		i++;
+		if(i==6)
+		System.out.println();
+	}
+	vr.clear();
+	//从此向量中移除所有元素。此调用返回后，向量将为空（除非抛出了异常）。 
+  }
+}
