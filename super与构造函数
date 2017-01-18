@@ -1,0 +1,40 @@
+public class Test {
+	public static void main(String[] args){
+		A a=new A();
+		//结果显示如下
+		//A
+		//System.out.println("new A() over");
+		B b=new B();
+		//结果显示如下
+		//A
+		//B		
+		//System.out.println("new B() over");
+		C c=new C();
+		//结果显示如下
+		//A
+		//B
+		//C
+		//System.out.println("new C() over");
+  }
+}
+class A{
+	A(){
+		System.out.println("A");
+	}
+}
+class B extends A{
+	B(){
+		//super();
+		//子类的构造函数如果要调用super，必须把super放在函数的首位，不然或报错
+		System.out.println("B");
+		//super(); 如果把super放在指这个位置
+		//compile time error :
+		//Constructor call must be the first statement in a constructor
+	}
+}
+class C extends B{
+	C(){
+		super();
+		System.out.println("C");
+	}
+}
