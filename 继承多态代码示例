@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+public class Test {
+	public static void main(String[] args){
+	B ob=new B();
+	ob.show(); //输出  B
+	
+	A ab=(A)ob;
+	System.out.println(ab.getClass());// 输出结果为 class B
+	ab.show(); //输出  B
+	
+	C oc=new C();
+	oc.show();//输出 C
+	
+	A ac=(A)oc;
+	System.out.println(ac.getClass());// 输出结果为 class C
+	ac.show(); //输出  C
+	
+	ab=new A();
+	ab.show(); //输出  A
+  }
+}
+class A{
+	public void show(){
+		System.out.println("A");
+	}
+}
+class B extends A{
+	public void show(){
+		System.out.println("B");
+	}
+}
+class C extends A{
+	public void show(){
+		System.out.println("C");
+	}
+}
