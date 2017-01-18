@@ -1,0 +1,15 @@
+public class Test {
+	
+	public static void haha(){
+		System.out.println("haha");
+	}
+	public static void main(String[] args){
+	
+		((Test)null).haha();
+		//null 值可以强制转换成任何Java类类型，（String）null也是合法的
+		//但强制装换后是无效对象，其返回值还是null，
+		//此段code中，Static方法的调用是和类名绑定的，不借助对象进行访问，所以能正常输出
+		//反过来，如果没有static修饰只能用对象进行访问，使用null调用对象会报空指针错误
+		
+  }
+}
