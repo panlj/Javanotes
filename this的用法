@@ -1,0 +1,87 @@
+public class Test {
+	public static void main(String[] args){
+		A a=new A("begin");
+		//结果显示
+		//last
+		//third
+		//second
+		//begin
+
+  }
+}
+class A{
+	public int var;
+	A(){
+		System.out.println("last");
+	}
+	A(int var){
+		this(5.0);
+		this.var=var;
+		System.out.println("second");
+	}	
+	A(double var){
+		this();
+		this.var=(int)var;
+		System.out.println("third");
+	}
+	A(String s){
+		this(5);
+		System.out.println("begin");
+	}
+	
+}
+//针对上述代码解析this用法：就是构造函数的第一个语句，它的形式是this（参数表），这个构造函数就会调用同一个类的另一个相对的构造函数。
+//this的其他用法
+/*
+this关键字使用在一个成员函数的内部，指向当前对象（指的是当前正在执行方法的那个对象实例）
+1、this.var=var;常用于构造函数中
+2、System.out.println(this);全面访问当前对象时，有时候会结合toString()方法一起使用。注意不能用在静态方法中
+*/
+//针对2用法对代码进行补充，具体代码如下
+public class Test {
+	public static void main(String[] args){
+		A a=new A("begin");
+		a.thisA();
+		B b=new B();
+		b.thisB();
+		//结果显示
+		//last
+		//third
+		//second
+		//begin
+		//A@15db9742  A在调用thisA方法
+		//last   在给b申请空间new的时候调用了A的无参构造函数
+		//B@6d06d69c  B在调用thisA方法
+
+  }
+}
+class A{
+	public int var;
+	A(){
+		this.var=5;
+		System.out.println("last");
+	}
+	A(int var){
+		this(5.0);
+		System.out.println("second");
+	}	
+	A(double var){
+		this();
+		System.out.println("third");
+	}
+	A(String s){
+		this(5);
+		System.out.println("begin");
+	}
+	 
+	public  void thisA(){
+		System.out.println(this);
+	}
+	
+}
+class B extends A{
+	public void thisB(){
+		//System.out.println(this);
+		super.thisA();
+	}
+}
