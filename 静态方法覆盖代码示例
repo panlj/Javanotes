@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+public class Test {
+	public static void main(String[] args){
+		A oa=new A();
+		System.out.println(oa.show());	  //输出 A
+		
+		A ab=new B();
+		System.out.println(ab.getClass());//输出 class B
+		System.out.println(ab.show());    //输出 A 
+		//因为这两个show（）方法都是静态方法，所以在内存中的地址空间是固定的，根本不存在冲突问题
+		//也就是说，这两个方法在内存中占用了不同的空间，而具体执行哪一个，则要看是由那个类来调用，
+		//因为是静态方法，而且两个引用都是A，所以只会调用A的方法。
+		B bc=new C();
+		A ac=new C();
+		System.out.println(bc.show());    //输出 B
+		System.out.println(ac.show());    //输出 A
+  }
+}
+class A{
+	public static  String  show(){
+		return "A";
+	}
+}
+class B extends A{
+	public static String show(){
+		return "B";
+	}
+}
+class C extends B{
+	public static  String show(){
+		return "C";
+	}
+}
