@@ -1,0 +1,57 @@
+public class Test{
+
+public static void main(String[] args)
+{
+StringBuffer a=new StringBuffer("A");
+StringBuffer a=new StringBuffer("B");
+opertor(a,b);
+System,out.println(a+","+b);
+//结果：AB,B
+}
+
+public static void opertor(String x,String y)
+{
+x.appends(y);
+y=x;
+}
+}
+/*String 与StringBuffer的区别：
+1、String的创建
+String s="Hello";
+  JVM先根据内容“hello”查找对象，如果没有找到，则在heap上创建新对象，将其赋予s1？，否则使用已经存在的对象。
+String s=new String("hello");
+  JVM直接在heap上创建新的对象，所以在heap中会出现内容相同而地址不同的String对象。
+ 2、String的比较
+ “==”比较的是地址，“equals()”是比较内容
+ 举例子：
+ String s1="hello";
+ String s2="hello";
+ String s3=new String("hello");
+ 
+ s1==s2        //T 地址相同
+ s1==s3        //F 地址不同
+ s1.equals(s2) //T 内容相同
+ s1.equals(s3) //T 内容相同
+ 
+ 3、intern（）方法
+ 查找内容相同（equals（））的字符串，举例如下
+ String s1 = "hello"; //hello 不存在，JVM创建新的对象（1）
+ String s2=new String("hello");//创建新的对象（2），这是heap中存在两个内容为hello的对象
+ s1==s2           //F 地址不同
+ s1.eauqls(s2)    //T 内容不同
+ s2=s2.intern();  //T 找到对象（1），并赋予s2
+ s1==s2;          //T 注意，此时s1,s2同时指向（1）
+ 4、效率比较
+ 具题情况具体分析
+ 5、注意点
+ （1）不能简单认为.append()效率高于“+”
+ （2）不要使用new创建String；？
+ （3）注意.intern()的使用
+ （4）在编译器能够确定字符串值的情况下，使用“+”效率最高
+ （5）避免使用“+=”来构造字符串
+ （6）在声明StringBuffer对象的时候，只订合适的capacity，不要使用默认值（18）
+ （7）注意两者的区别：后者开辟了两个内存段
+ 举例：String s=new String("S")';
+ 在这条语句中，“S”本身就是pool中的一个对象，而在运行执行new String（）时，将pool中的对象赋值一份放到heap中，并且把heap中的这个对象的引用交给S持有、
+ 这条语句就创建了两个String对象。
+*/
