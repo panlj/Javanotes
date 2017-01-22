@@ -1,0 +1,42 @@
+public class Test {
+	public static void main(String[] args){
+		String s1="string";
+		String s2="string";
+		String s3=new String("string");
+		String s4=new String("string");
+		String s5=new String("STRING");
+		
+		System.out.println("String s1="+"string"+";");
+		System.out.println("String s2="+"string"+";");
+		System.out.println("String s3=new String("+"string"+")");
+		System.out.println("String s4=new String("+"string"+");");
+		System.out.println("String s5=new String("+"STRING"+");");
+		System.out.println("s2==s1："+(s2==s1));//T
+		System.out.println("s2.equals(s1)："+s2.equals(s1));//T
+		System.out.println("s4==s3："+(s4==s3));//F
+		System.out.println("s4.equals(s3)："+s4.equals(s3));//T
+		System.out.println("s1==s3："+(s1==s3));//F
+		System.out.println("s1.equals(s3)："+s1.equals(s3));//T
+		System.out.println("s5==s4："+(s5==s4));//F
+		System.out.println("s5.equals(s4)："+s5.equals(s4));//F
+		
+		
+		s2=s1;
+		s4=s3;
+		System.out.println();
+		System.out.println("s2=s1");
+		System.out.println("s4=s3");		
+		System.out.println("s2==s1："+(s2==s1));//T
+		System.out.println("s2.equals(s1)："+s2.equals(s1));//T
+		System.out.println("s4==s3："+(s4==s3));//T
+		System.out.println("s4.equals(s3)："+s4.equals(s3));//T
+		System.out.println("s1==s3："+(s1==s3));//F
+		System.out.println("s1.equals(s3)："+s1.equals(s3));//T
+		
+  }
+}
+/*解析：
+“==”判断符号左右两个变量（object）是否指向同一内存地址；
+“equals（）”判断两个object是否“一样”（所有成员的值相同）。
+
+*/
