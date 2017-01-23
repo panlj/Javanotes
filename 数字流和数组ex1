@@ -1,0 +1,77 @@
+import java.util.*;
+public class Test {
+	public static void main(String[] args){
+	int []ints={3,4,3,2,-1,3,3,3};
+	int j= judge(ints);
+	if(j==-1)
+	{
+		System.out.println("No dominator");
+	}
+	else
+	{
+		System.out.println("The dominator is :"+j);
+	}
+	}
+	public static int judge(int[] ints)
+	{
+		Arrays.sort(ints);//对数组进行排序
+    int value=1;
+		for(int i=0;i<(ints.length-1);i++)
+		{
+			if(ints[i]==ints[i+1])
+			{
+				value++;
+				if((double)value/ints.length>0.5)
+					return ints[i];	
+			}else 
+				{
+					value=1;
+				}
+		}
+		return -1;
+	}
+}
+/*另一种解法：用集合实现
+public class Test {
+	public HashSet <Integer>  elements=new HashSet<Integer>();
+	public void dominator(int [] list)
+	{
+		boolean found =false;
+		for(int i=0;i<list.length;i++)
+		{
+			if(elements.contains(list[i]))
+				continue;
+			else{
+				int counter=0;
+				Arrays.sort(list);
+				for(int j=i+1;j<list.length;j++)
+				{
+					if(list[i]==list[j])
+					{
+						counter++;
+					}
+				}
+				double ratio = new Double(counter+1)/list.length;
+				if(ratio>0.5){
+					found=true;
+					System.out.println("The dominator is "+list[i]);
+					break;
+				}
+				else
+				{
+					elements.add(new Integer(list[i]));
+				}
+			}
+			
+		}if(!found)
+			{
+				System.out.println("No dominator");
+			}
+		
+	}
+	public static void main(String[] args){
+		int [] ints ={3,4,3,2,-1,3,3,3};
+		new Test().dominator(ints);
+	}
+}
+*/
