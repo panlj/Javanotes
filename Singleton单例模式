@@ -1,0 +1,40 @@
+/*
+ * Singleton单例模式的实现方法是将构造函数私有，以防止外界通过调用构造函数创建类的对象。
+ * 将类的唯一的对象保存为静态私有属性
+ * 然后提供一个静态公有方法获取该唯一对象，可以保证每次返回的都是同一个对象*/
+public class Test{  
+    public static void main(String[] args) 
+    { 
+    	Singleton s1=Singleton.getSingleton();
+    	Singleton s2=Singleton.getSingleton();
+    	System.out.println("before s1 "+s1.getvalue());  //5
+    	System.out.println("before s2 "+s2.getvalue());  //5
+    	System.out.println("s1==s2? "+(s1==s2));//T
+    	System.out.println("s1.equals2? "+(s1.equals(s2)));//T
+    	s1.setvalue();
+    	System.out.println("after s1 "+s1.getvalue());//6
+    	System.out.println("after s2 "+s2.getvalue());//6
+    	System.out.println("s1==s2?"+(s1==s2));//T
+    	System.out.println("s1.equals2? "+(s1.equals(s2)));//T
+    	
+    }  
+} 
+class Singleton{
+	private int  value ;
+	private static  Singleton singleton=new Singleton();
+	private Singleton ()
+	{	
+		value=5;
+	}
+	public static Singleton getSingleton()
+	{
+		return singleton;
+	}
+	public synchronized void setvalue(){//确保同一时刻只有一个线程进入该方法
+		value++; 
+	}
+	public synchronized int getvalue()
+	{
+		return value;
+	}
+}
